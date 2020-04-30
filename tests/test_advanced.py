@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .context import wrapper
+from .context import lib
 
 import unittest
 
@@ -9,7 +9,7 @@ class AdvancedTestSuite(unittest.TestCase):
     """Advanced test cases."""
 
     def test_thoughts(self):
-        self.assertIsNone(wrapper.hmm())
+        self.assertIsNone(lib.hmm())
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .context import wrapper
+from .context import lib
 
 import unittest
 

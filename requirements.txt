@@ -1,2 +1,6 @@
 nose
 sphinx
+jsonschema~=3.2.0
+simplejson~=3.17.0
+cwltool~=3.0.20200324120055
+setuptools~=46.1.3

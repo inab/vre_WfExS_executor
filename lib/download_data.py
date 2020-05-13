@@ -98,7 +98,7 @@ def validate_url(url):
 
 
 if __name__ == '__main__':
-    cwl_url = "https://raw.githubusercontent.com/inab/vre_cwl_executor/master/tests/basic/data/workflows/basic_example_v2.cwl"
+    cwl_url = "https://raw.githubusercontent.com/inab/vre_cwl_executor/master/tests/basic/data/workflows/basic_example.cwl"
 
     # extract inputs, outputs, dependencies
     inputs, outputs, tools = extract_data_from_cwl(cwl_url)

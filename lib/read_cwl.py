@@ -38,7 +38,8 @@ def read_inp_rec_type_field(inp_rec_type):
     null_allowed = False
     null_items_allowed = False
     allowed_selection = [""]
-    # test if optional:
+
+    # if optional:
     if isinstance(inp_rec_type, list):
         if len(inp_rec_type) == 2 and "null" in inp_rec_type:
             null_allowed = True
@@ -50,7 +51,8 @@ def read_inp_rec_type_field(inp_rec_type):
     # array or type enum:
     if isinstance(inp_rec_type, dict):
         assert "type" in inp_rec_type.keys(), print_pref + " unkown type"
-        # test if array:
+
+        # if array:
         if "items" in inp_rec_type.keys():
             if inp_rec_type["type"] == "array":
                 is_array = True
@@ -62,7 +64,8 @@ def read_inp_rec_type_field(inp_rec_type):
                         raise AssertionError(print_pref + " unkown type")
             else:
                 raise AssertionError(print_pref + " unkown type")
-            # test if "null" is allowed as array item:
+
+            # if "null" is allowed as array item:
             if isinstance(inp_rec_type, list):
                 if len(inp_rec_type) == 2 and "null" in inp_rec_type:
                     null_items_allowed = True
@@ -71,16 +74,18 @@ def read_inp_rec_type_field(inp_rec_type):
                 else:
                     raise AssertionError(print_pref + " unkown type" +
                                          ": lists of type are only supported when one of two elements is \"null\"")
-        # test if type enum
+        # if type enum
         elif inp_rec_type["type"] == "enum":
             allowed_selection = inp_rec_type["symbols"]
             inp_rec_type = "string"
         else:
             raise AssertionError(print_pref + " unkown type")
+
     if isinstance(inp_rec_type, str):
         type_ = inp_rec_type
     else:
         raise AssertionError(print_pref + " unkown type")
+
     return type_, null_allowed, is_array, null_items_allowed, allowed_selection
 
 
@@ -100,13 +105,27 @@ def read_config_from_cwl_file(cwl_file):
     from cwltool.load_tool import load_tool
     from cwltool.workflow import default_make_tool
     loadingContext = LoadingContext({"construct_tool_object": default_make_tool, "disable_js_validation": True})
+
     try:
         cwl_document = load_tool(cwl_file, loadingContext)
     except AssertionError as e:
         raise AssertionError(print_pref + "failed to read cwl file \"" + cwl_file + "\": does not exist or is invalid")
+
+    # inputs
     inp_records = cwl_document.inputs_record_schema["fields"]
+    print(json.dumps(inp_records, indent=2))
+
+    # outputs
+    out_records = cwl_document.outputs_record_schema["fields"]
+
+    # workflow dependencies
+    tools_list = list()
+    for item in cwl_document.metadata["steps"]:
+        [tools_list.append(item[key]) for key in item.keys() if key == "run"]
+
     if "doc" in cwl_document.tool:
         metadata["doc"] = cwl_document.tool["doc"]
+
     for inp_rec in inp_records:
         name = clean_string(inp_rec["name"])
         # read type:
@@ -115,6 +134,7 @@ def read_config_from_cwl_file(cwl_file):
                 inp_rec["type"])
         except Exception as e:
             raise AssertionError(print_pref + "E: reading type of param \"{}\": {}".format(name, str(e)))
+
         # get the default:
         if "default" in inp_rec:
             if is_basic_type_instance(inp_rec["default"]):
@@ -129,16 +149,19 @@ def read_config_from_cwl_file(cwl_file):
                             print(print_pref + "W: invalid default value for parameter " + name +
                                   ": will be ignored", file=sys.stderr)
                             default_value = [""]
+
                 elif type_ == "File" and isinstance(inp_rec["default"], dict):
                     print(print_pref + "W: invalid default value for parameter " + name +
                           ": defaults for File class are not supported yet; will be ignored", file=sys.stderr)
                     default_value = [""]
+
                 else:
                     print(print_pref + "W: invalid default value for parameter " + name +
                           ": will be ignored", file=sys.stderr)
                     default_value = [""]
         else:
             default_value = [""]
+
         # read secondary files:
         if type_ == "File" and "secondaryFiles" in inp_rec:
             if isinstance(inp_rec["secondaryFiles"], str):
@@ -159,25 +182,81 @@ def read_config_from_cwl_file(cwl_file):
                 raise AssertionError(print_pref + "E: invalid secondaryFiles field for parameter " + name)
         else:
             secondary_files = [""]
+
         # read doc:
         if "doc" in inp_rec:
             doc = inp_rec["doc"]
         else:
             doc = ""
+
         # assemble config parameters:
         inp_configs = {
-            "type": type_,
-            "is_array": is_array,
-            "null_allowed": null_allowed,
+            "type": type_,  # el que fa triar input file o argument
+            "is_array": is_array,  # si array allow_multiple == True, else otherwise
+            "null_allowed": null_allowed,  # si es False required sera True, else otherwise
             "null_items_allowed": null_items_allowed,
             "secondary_files": secondary_files,
-            "default_value": default_value,
-            "allowed_selection": allowed_selection,
+            "default_value": default_value,  # TODO per aqui podriem recollir els strings estranys like @RG de CHOP
+            "allowed_selection": allowed_selection,  # TODO per aqui podriem controlar
             "doc": doc
         }
+
         # add to configs dict:
         configs[name] = inp_configs
+
+    defineIO(configs)  # TODO create input files, output files and arguments
+
     return configs, metadata
+
+
+def defineIO(inputs):
+    input_files = {}
+    arguments = {}
+
+    for in_rec in inputs:
+        name = in_rec
+        input = inputs[name]
+
+        if input['type'] == "File":
+
+            # assemble input files parameters:
+            inp_files = {
+                "name": name,
+                "description": input['doc'],
+                "help": input['doc'],
+                # "file_type": ???
+                # "data_type": ???
+                "required": input['null_items_allowed'],
+                "allow_multiple": input['is_array']
+            }
+
+            # add to input_files dict:
+            input_files[name] = inp_files
+
+        else:
+
+            # assemble input files parameters:
+            inp_arguments = {
+                "name": name,
+                "description": input['doc'],
+                "help": input['doc'],
+                "type": input['type'],
+                "default": input['default_value']
+            }
+
+            # add to arguments dict:
+            arguments[name] = inp_arguments
+
+    print(input_files)
+    print(arguments)
+
+    d = {
+        "input_files": [input_files],
+        "arguments": [arguments]
+
+    }
+    with open('defineIO.json', 'w') as fp:
+        fp.write(json.dumps(d, indent=2))
 
 
 wf_basic = "https://raw.githubusercontent.com/inab/vre_cwl_executor/master/tests/basic/data/workflows/basic_example.cwl"

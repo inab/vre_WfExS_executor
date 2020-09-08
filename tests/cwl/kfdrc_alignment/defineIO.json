@@ -1,0 +1,237 @@
+{
+  "input_files": [
+    {
+      "contamination_sites_bed": {
+        "name": "contamination_sites_bed",
+        "description": ".Bed file for markers used in this analysis,format(chr\tpos-1\tpos\trefAllele\taltAllele)",
+        "help": ".Bed file for markers used in this analysis,format(chr\tpos-1\tpos\trefAllele\taltAllele)",
+        "required": false,
+        "allow_multiple": false
+      },
+      "contamination_sites_mu": {
+        "name": "contamination_sites_mu",
+        "description": ".mu matrix file of genotype matrix",
+        "help": ".mu matrix file of genotype matrix",
+        "required": false,
+        "allow_multiple": false
+      },
+      "contamination_sites_ud": {
+        "name": "contamination_sites_ud",
+        "description": ".UD matrix file from SVD result of genotype matrix",
+        "help": ".UD matrix file from SVD result of genotype matrix",
+        "required": false,
+        "allow_multiple": false
+      },
+      "dbsnp_idx": {
+        "name": "dbsnp_idx",
+        "description": "dbSNP vcf index file",
+        "help": "dbSNP vcf index file",
+        "required": false,
+        "allow_multiple": false
+      },
+      "dbsnp_vcf": {
+        "name": "dbsnp_vcf",
+        "description": "dbSNP vcf file",
+        "help": "dbSNP vcf file",
+        "required": false,
+        "allow_multiple": false
+      },
+      "input_bam_list": {
+        "name": "input_bam_list",
+        "description": "List of input BAM files",
+        "help": "List of input BAM files",
+        "required": false,
+        "allow_multiple": true
+      },
+      "input_pe_mates_list": {
+        "name": "input_pe_mates_list",
+        "description": "List of input R2 paired end fastq reads",
+        "help": "List of input R2 paired end fastq reads",
+        "required": false,
+        "allow_multiple": true
+      },
+      "input_pe_reads_list": {
+        "name": "input_pe_reads_list",
+        "description": "List of input R1 paired end fastq reads",
+        "help": "List of input R1 paired end fastq reads",
+        "required": false,
+        "allow_multiple": true
+      },
+      "input_se_reads_list": {
+        "name": "input_se_reads_list",
+        "description": "List of input singlie end fastq reads",
+        "help": "List of input singlie end fastq reads",
+        "required": false,
+        "allow_multiple": true
+      },
+      "knownsites": {
+        "name": "knownsites",
+        "description": "List of files containing known polymorphic sites used to exclude regions around known polymorphisms from analysis",
+        "help": "List of files containing known polymorphic sites used to exclude regions around known polymorphisms from analysis",
+        "required": false,
+        "allow_multiple": true
+      },
+      "knownsites_indexes": {
+        "name": "knownsites_indexes",
+        "description": "Corresponding indexes for the knownsites. File position in list must match with its corresponding VCF's position in the knownsites file list. For example, if the first file in the knownsites list is 1000G_omni2.5.hg38.vcf.gz then the first item in this list must be 1000G_omni2.5.hg38.vcf.gz.tbi. Optional, but will save time/cost on indexing.",
+        "help": "Corresponding indexes for the knownsites. File position in list must match with its corresponding VCF's position in the knownsites file list. For example, if the first file in the knownsites list is 1000G_omni2.5.hg38.vcf.gz then the first item in this list must be 1000G_omni2.5.hg38.vcf.gz.tbi. Optional, but will save time/cost on indexing.",
+        "required": false,
+        "allow_multiple": true
+      },
+      "reference_tar": {
+        "name": "reference_tar",
+        "description": "Tar file containing a reference fasta and, optionally, its complete set of associated indexes (samtools, bwa, and picard)",
+        "help": "Tar file containing a reference fasta and, optionally, its complete set of associated indexes (samtools, bwa, and picard)",
+        "required": false,
+        "allow_multiple": false
+      },
+      "wgs_calling_interval_list": {
+        "name": "wgs_calling_interval_list",
+        "description": "WGS interval list used to aid scattering Haplotype caller",
+        "help": "WGS interval list used to aid scattering Haplotype caller",
+        "required": false,
+        "allow_multiple": false
+      },
+      "wgs_coverage_interval_list": {
+        "name": "wgs_coverage_interval_list",
+        "description": "An interval list file that contains the positions to restrict the wgs metrics assessment",
+        "help": "An interval list file that contains the positions to restrict the wgs metrics assessment",
+        "required": false,
+        "allow_multiple": false
+      },
+      "wgs_evaluation_interval_list": {
+        "name": "wgs_evaluation_interval_list",
+        "description": "Target intervals to restrict gvcf metric analysis (for VariantCallingMetrics)",
+        "help": "Target intervals to restrict gvcf metric analysis (for VariantCallingMetrics)",
+        "required": false,
+        "allow_multiple": false
+      },
+      "wxs_bait_interval_list": {
+        "name": "wxs_bait_interval_list",
+        "description": "An interval list file that contains the locations of the WXS baits used (for HsMetrics)",
+        "help": "An interval list file that contains the locations of the WXS baits used (for HsMetrics)",
+        "required": false,
+        "allow_multiple": false
+      },
+      "wxs_target_interval_list": {
+        "name": "wxs_target_interval_list",
+        "description": "An interval list file that contains the locations of the WXS targets (for HsMetrics)",
+        "help": "An interval list file that contains the locations of the WXS targets (for HsMetrics)",
+        "required": false,
+        "allow_multiple": false
+      }
+    }
+  ],
+  "arguments": [
+    {
+      "biospecimen_name": {
+        "name": "biospecimen_name",
+        "description": "String name of biospcimen",
+        "help": "String name of biospcimen",
+        "type": "string",
+        "default": [
+          ""
+        ]
+      },
+      "input_pe_rgs_list": {
+        "name": "input_pe_rgs_list",
+        "description": "List of RG strings to use in PE processing",
+        "help": "List of RG strings to use in PE processing",
+        "type": "string",
+        "default": [
+          ""
+        ]
+      },
+      "input_se_rgs_list": {
+        "name": "input_se_rgs_list",
+        "description": "List of RG strings to use in SE processing",
+        "help": "List of RG strings to use in SE processing",
+        "type": "string",
+        "default": [
+          ""
+        ]
+      },
+      "min_alignment_score": {
+        "name": "min_alignment_score",
+        "description": "For BWA MEM, Don't output alignment with score lower than INT. This option only affects output.",
+        "help": "For BWA MEM, Don't output alignment with score lower than INT. This option only affects output.",
+        "type": "int",
+        "default": [
+          "30"
+        ]
+      },
+      "output_basename": {
+        "name": "output_basename",
+        "description": "String to use as the base for output filenames",
+        "help": "String to use as the base for output filenames",
+        "type": "string",
+        "default": [
+          ""
+        ]
+      },
+      "run_agg_metrics": {
+        "name": "run_agg_metrics",
+        "description": "AlignmentSummaryMetrics, GcBiasMetrics, InsertSizeMetrics, QualityScoreDistribution, and SequencingArtifactMetrics will be collected. Recommended for both WXS and WGS inputs.",
+        "help": "AlignmentSummaryMetrics, GcBiasMetrics, InsertSizeMetrics, QualityScoreDistribution, and SequencingArtifactMetrics will be collected. Recommended for both WXS and WGS inputs.",
+        "type": "boolean",
+        "default": [
+          ""
+        ]
+      },
+      "run_bam_processing": {
+        "name": "run_bam_processing",
+        "description": "BAM processing will be run. Requires: input_bam_list",
+        "help": "BAM processing will be run. Requires: input_bam_list",
+        "type": "boolean",
+        "default": [
+          ""
+        ]
+      },
+      "run_gvcf_processing": {
+        "name": "run_gvcf_processing",
+        "description": "gVCF will be generated. Requires: dbsnp_vcf, contamination_sites_bed, contamination_sites_mu, contamination_sites_ud, wgs_calling_interval_list, wgs_evaluation_interval_list",
+        "help": "gVCF will be generated. Requires: dbsnp_vcf, contamination_sites_bed, contamination_sites_mu, contamination_sites_ud, wgs_calling_interval_list, wgs_evaluation_interval_list",
+        "type": "boolean",
+        "default": [
+          ""
+        ]
+      },
+      "run_hs_metrics": {
+        "name": "run_hs_metrics",
+        "description": "HsMetrics will be collected. Only recommended for WXS inputs. Requires: wxs_bait_interval_list, wxs_target_interval_list",
+        "help": "HsMetrics will be collected. Only recommended for WXS inputs. Requires: wxs_bait_interval_list, wxs_target_interval_list",
+        "type": "boolean",
+        "default": [
+          ""
+        ]
+      },
+      "run_pe_reads_processing": {
+        "name": "run_pe_reads_processing",
+        "description": "PE reads processing will be run. Requires: input_pe_reads_list, input_pe_mates_list, input_pe_rgs_list",
+        "help": "PE reads processing will be run. Requires: input_pe_reads_list, input_pe_mates_list, input_pe_rgs_list",
+        "type": "boolean",
+        "default": [
+          ""
+        ]
+      },
+      "run_se_reads_processing": {
+        "name": "run_se_reads_processing",
+        "description": "SE reads processing will be run. Requires: input_se_reads_list, input_se_rgs_list",
+        "help": "SE reads processing will be run. Requires: input_se_reads_list, input_se_rgs_list",
+        "type": "boolean",
+        "default": [
+          ""
+        ]
+      },
+      "run_wgs_metrics": {
+        "name": "run_wgs_metrics",
+        "description": "WgsMetrics will be collected. Only recommended for WGS inputs. Requires: wgs_coverage_interval_list",
+        "help": "WgsMetrics will be collected. Only recommended for WGS inputs. Requires: wgs_coverage_interval_list",
+        "type": "boolean",
+        "default": [
+          ""
+        ]
+      }
+    }
+  ]
+}

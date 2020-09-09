@@ -264,7 +264,7 @@ wf_basic = "https://raw.githubusercontent.com/inab/vre_cwl_executor/master/tests
 wf_kfdrc = "https://raw.githubusercontent.com/kids-first/kf-alignment-workflow/dm-ipc-fixes/workflows/kfdrc_alignment_wf_cyoa.cwl"
 wf_wetlab2variations = "https://raw.githubusercontent.com/inab/Wetlab2Variations/eosc-life/cwl-workflows/workflows/workflow.cwl"
 
-config, metadata = read_config_from_cwl_file(wf_wetlab2variations)
+config, metadata = read_config_from_cwl_file(wf_basic)
 with open('config.json', 'w') as fp:
     fp.write(json.dumps(config, indent=2))
 

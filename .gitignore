@@ -128,4 +128,4 @@ dmypy.json
 .pyre/
 
 # PyCharm project settings
-.idea
+.idea/

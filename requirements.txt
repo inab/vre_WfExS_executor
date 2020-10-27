@@ -1,7 +1,8 @@
 nose
-sphinx
+sphinx~=3.2.1
 jsonschema~=3.2.0
-simplejson~=3.17.0
-cwltool~=3.0.20200324120055
-requests~=2.23.0
+simplejson~=3.17.2
+cwltool
+requests~=2.22.0
 git+https://github.com/common-workflow-language/cwl-utils.git
+git+https://github.com/inab/ro-crate-py.git

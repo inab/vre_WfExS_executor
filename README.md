@@ -1,6 +1,6 @@
-# Generic Wrapper
+# Generic Wrapper Workflow Executor
 
-This generic wrapper is written for Python 3.6 and later.
+This generic wrapper workflow executor is written for Python 3.6 and later.
 
 * In order to install the dependencies you need `pip` and `venv` modules.
 	- `pip` is available in many Linux distributions (Ubuntu packages `python3-pip`, CentOS EPEL package `python-pip`), 
@@ -8,11 +8,12 @@ This generic wrapper is written for Python 3.6 and later.
 	- `venv` is also available in many Linux distributions (Ubuntu package `python3-venv`). In some of them is 
 	integrated into the Python 3.5 (or later) installation.
 
-* The creation of a virtual environment where to install WES backend dependencies is done running:
-  
-```bash
+* The creation of a virtual environment where to install generic wrapper workflow executor dependencies is done running:
+```
 python3 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip wheel
 pip install -r requirements.txt
 ```
+* If you upgrade your Python installation (from version 3.6 to 3.7, for instance), or you move this folder to a different
+location after following the instructions, you may need to remove and reinstall the virtual environment.

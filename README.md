@@ -1,6 +1,6 @@
-# Generic Wrapper 
+# VRE Tool Generator 
 
-This generic wrapper is written for Python 3.6 and later.
+This Tool Generator is written for Python 3.6 and later.
 
 * In order to install the dependencies you need `pip` and `venv` modules.
 	- `pip` is available in many Linux distributions (Ubuntu packages `python3-pip`, CentOS EPEL package `python-pip`), 
@@ -10,8 +10,8 @@ This generic wrapper is written for Python 3.6 and later.
 
 * The creation of a virtual environment where to install generic wrapper dependencies is done running:
 ```
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv .pyWEenv
+source .pyWEenv/bin/activate
 pip install --upgrade pip wheel
 pip install -r requirements.txt
 ```

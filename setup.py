@@ -20,32 +20,40 @@ import re
 import os
 import sys
 
+# In this way, we are sure we are getting
+# the installer's version of the library
+# not the system's one
 sys.path.insert(0, os.path.dirname(__file__))
 
-with open('README.md') as f:
-    readme = f.read()
+from lib import __version__ as version
+from lib import __author__ as author
+from lib import __license__ as license
 
-with open('LICENSE') as f:
-    license = f.read()
+# Populating the long description
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
+# Populating the install requirements
 with open('requirements.txt') as f:
-    requirements = list()
+    requirements = []
     egg = re.compile(r"#[^#]*egg=([^=&]+)")
     for line in f.read().splitlines():
         m = egg.search(line)
         requirements.append(line if m is None else m.group(1))
 
 setuptools.setup(
-    name='generic_wrapper',
-    version='generic_wrapper_backend_version',
-    author='Laura Rodriguez-Navas',
-    author_email='lrodrin@users.noreply.github.com',
+    name="tool_generator",
+    version=version,
+    scripts=["tool_generator.py"],
+    author=author,
+    author_email="lrodrin@users.noreply.github.com",
     license=license,
-    description='Generic Wrapper backend',
-    long_description=readme,
+    description="VRE Tool Generator",
+    long_description=long_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/inab/generic_wrapper',
+    url="https://github.com/inab/vre_tool_generator",
     packages=setuptools.find_packages(),
+    install_requires=requirements,
     classifiers=[
         "Programming Language :: Python :: 3",
         "Development Status :: 3 - Alpha",

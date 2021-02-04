@@ -6,9 +6,9 @@ from typing import List, Optional, Any
 class Argument:
     name: str
     description: str
-    help: str
+    help: Optional[str]
     type: str
-    default: Any
+    default: Optional[Any] = None
 
 
 @dataclass
@@ -37,7 +37,7 @@ class Infrastructure:
 class InputFile:
     name: str
     description: str
-    help: str
+    help: Optional[str]
     file_type: List[str]
     data_type: List[str]
     required: bool
@@ -46,7 +46,7 @@ class InputFile:
 
 @dataclass
 class InputFilesCombination:
-    description: str
+    description: Optional[str]
     input_files: List[str]
 
 
@@ -89,7 +89,7 @@ class Tool:
     short_description: str
     long_description: str
     url: str
-    publication: str
+    publication: Optional[str]
     owner: Owner
     keywords: List[str]
     keywords_tool: List[str]

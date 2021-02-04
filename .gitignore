@@ -130,3 +130,7 @@ dmypy.json
 
 # PyCharm IDE folder
 .idea/
+
+# WfExS backend folders
+/examples/cosifer/ro-crate-cache/
+/examples/cosifer/wf-cache/

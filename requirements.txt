@@ -1,1 +1,4 @@
+pyyaml
+dataclasses
+dataclasses_serialization
 git+https://github.com/inab/WfExS-backend.git#egg=wfexs_backend

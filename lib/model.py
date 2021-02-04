@@ -8,7 +8,7 @@ class Argument:
     description: str
     help: str
     type: str
-    default: int
+    default: Any
 
 
 @dataclass

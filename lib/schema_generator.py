@@ -118,6 +118,7 @@ def setTool(owner, keywords, infrastructure, input_files, arguments):  # TODO
         owner=owner,
         keywords=keywords,
         keywords_tool=keywords,
+        status=0,
         infrastructure=infrastructure,
         input_files=input_files,
         input_files_public_dir=[],

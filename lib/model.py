@@ -93,6 +93,7 @@ class Tool:
     owner: Owner
     keywords: List[str]
     keywords_tool: List[str]
+    status: int
     infrastructure: Infrastructure
     input_files: List[InputFile]
     input_files_public_dir: List[Any]

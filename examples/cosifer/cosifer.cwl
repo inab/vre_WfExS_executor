@@ -1,43 +1,44 @@
 class: CommandLineTool
 cwlVersion: v1.0
-$namespaces:
-  sbg: 'https://www.sevenbridges.com/'
 id: cosifer
-baseCommand:
-  - cosifer
+label: cosifer
+
+requirements:
+  DockerRequirement:
+    dockerPull: 'tsenit/cosifer:b4d5af45d2fc54b6bff2a9153a8e9054e560302e'
+
+baseCommand: [cosifer]
+
 inputs:
-  - id: data_matrix
+  data_matrix:
     type: File
     inputBinding:
-      position: 0
+      position: 1
       prefix: '-i'
-  - id: separator
+  separator:
     type: string?
     inputBinding:
-      position: 0
+      position: 2
       prefix: '--sep='
       separate: false
-  - id: index_col
+  index_col:
     type: int?
     inputBinding:
-      position: 0
+      position: 3
       prefix: '--index'
-  - id: gmt_filepath
+  gmt_filepath:
     type: File?
     inputBinding:
-      position: 0
+      position: 4
       prefix: '--gmt_filepath'
-  - id: outdir
+  outdir:
     type: string?
     inputBinding:
-      position: 0
+      position: 5
       prefix: '-o'
-outputs:
-  - id: resdir
+      
+outputs: 
+  resdir:
     type: Directory
     outputBinding:
-      outputEval: inputs.outdir
-label: cosifer
-requirements:
-  - class: DockerRequirement
-    dockerPull: 'tsenit/cosifer:b4d5af45d2fc54b6bff2a9153a8e9054e560302e'
+      glob: '*'

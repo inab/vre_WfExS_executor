@@ -1,0 +1,5 @@
+data_matrix: 
+  class: File
+  location: "data_matrix.csv"
+outdir: "tmp/"
+separator: ","

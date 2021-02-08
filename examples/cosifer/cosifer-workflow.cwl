@@ -2,39 +2,24 @@ class: Workflow
 cwlVersion: v1.0
 id: cosifer_workflow
 label: cosifer-workflow
-$namespaces:
-  sbg: 'https://www.sevenbridges.com/'
+
 inputs:
-  - id: data_matrix
-    type: File
-  - id: gmt_filepath
-    type: File?
-  - id: index_col
-    type: int?
-  - id: outdir
-    type: string
-  - id: separator
-    type: string?
+  data_matrix: {type: File}
+  gmt_filepath: {type: File?}
+  index_col: {type: int?}
+  outdir: {type: string}
+  separator: {type: string?}
+
 outputs:
-  - id: resdir
-    outputSource:
-      - cosifer/resdir
-    type: Directory
+  resdir: {type: Directory, outputSource: cosifer/resdir}
+
 steps:
-  - id: cosifer
-    in:
-      - id: data_matrix
-        source: data_matrix
-      - id: separator
-        source: separator
-      - id: index_col
-        source: index_col
-      - id: gmt_filepath
-        source: gmt_filepath
-      - id: outdir
-        source: outdir
-    out:
-      - id: resdir
+  cosifer:
     run: ./cosifer.cwl
-    label: cosifer
-requirements: []
+    in:
+      data_matrix: data_matrix
+      separator: separator
+      index_col: index_col
+      gmt_filepath: gmt_filepath
+      outdir: outdir
+    out: [resdir]

@@ -1,19 +1,42 @@
 # VRE Tool Generator 
 
-This Tool Generator is written for Python 3.7 and later.
+## Requirements
 
-* In order to install the dependencies you need `pip` and `venv` modules.
-	- `pip` is available in many Linux distributions (Ubuntu packages `python3-pip`, CentOS EPEL package `python-pip`), 
-	and also as [pip](https://pip.pypa.io/en/stable/) Python package.
-	- `venv` is also available in many Linux distributions (Ubuntu package `python3-venv`). In some of them is 
-	integrated into the Python 3.7 (or later) installation.
+- Python 3.7 or later
+- [git](https://git-scm.com/downloads)
 
-* The creation of a virtual environment where to install generic wrapper dependencies is done running:
+```bash
+sudo apt update
+sudo apt install python3
+sudo apt install git
 ```
-python3 -m venv .pyWEenv
-source .pyWEenv/bin/activate
-pip install --upgrade pip wheel
+
+In order to install the Python dependencies you need `pip` and `venv` modules.
+
+```bash
+sudo apt install python3-pip python3-venv
+```
+
+## Installation
+
+Directly from GitHub:
+
+```bash
+cd $HOME
+git clone https://github.com/inab/vre_tool_generator.git
+cd vre_tool_generator
+```
+
+Create the Python environment:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade wheel
 pip install -r requirements.txt
 ```
-* If you upgrade your Python installation (from version 3.7 to 3.8, for instance), or you move this folder to a different
-location after following the instructions, you may need to remove and reinstall the virtual environment.
+
+## License
+* © 2020-2021 Barcelona Supercomputing Center (BSC), ES
+
+Licensed under the Apache License, version 2.0 <https://www.apache.org/licenses/LICENSE-2.0>, see the file `LICENSE.txt` for details.

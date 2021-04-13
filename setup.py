@@ -46,7 +46,7 @@ setuptools.setup(
     version=version,
     scripts=["tool_generator.py"],
     author=author,
-    author_email="lrodrin@users.noreply.github.com",
+    author_email="username@users.noreply.github.com",
     license=license,
     description="VRE Tool Generator",
     long_description=long_description,

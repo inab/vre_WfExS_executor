@@ -1,2 +1,6 @@
 cacheDir: ../wfexs-backend-test
 workDir: ../wfexs-backend-test_WorkDir
+crypt4gh:
+  key: local_config.yaml.key
+  passphrase: strive backyard dividing gumball
+  pub: local_config.yaml.pub

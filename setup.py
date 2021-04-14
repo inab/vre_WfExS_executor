@@ -42,16 +42,16 @@ with open('requirements.txt') as f:
         requirements.append(line if m is None else m.group(1))
 
 setuptools.setup(
-    name="tool_generator",
+    name="vre_generic_executor",
     version=version,
-    scripts=["tool_generator.py"],
+    scripts=["vre_generic_executor.py"],
     author=author,
     author_email="username@users.noreply.github.com",
     license=license,
-    description="VRE Tool Generator",
+    description="iPC VRE Generic Executor",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/inab/vre_tool_generator",
+    url="https://github.com/inab/vre_generic_executor",
     packages=setuptools.find_packages(),
     install_requires=requirements,
     classifiers=[

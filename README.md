@@ -1,4 +1,4 @@
-# VRE Tool Generator 
+# iPC VRE Generic Executor 
 
 ## Requirements
 

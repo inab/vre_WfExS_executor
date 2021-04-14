@@ -36,9 +36,9 @@ envDir="$(python3 -c 'import sys; print(""  if sys.prefix==sys.base_prefix  else
 if [ -n "${envDir}" ]; then
   echo "Using currently active environment ${envDir} to install the dependencies"
 else
-  envDir="${wfexsDir}/.pyWEenv"
+  envDir="${wfexsDir}/.pyenv"
 
-  echo "Creating WfExS-backend python virtual environment at ${envDir}"
+  echo "Creating python virtual environment at ${envDir}"
 
   # Checking whether the environment exists
   if [ ! -f "${envActivate}" ]; then
@@ -51,7 +51,7 @@ else
 fi
 
 # Checking whether the modules were already installed
-echo "Installing WfExS-backend python dependencies"
+echo "Installing python dependencies"
 pip install --upgrade pip wheel
 pip install -r "${wfexsDir}"/requirements.txt
 

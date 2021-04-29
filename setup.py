@@ -25,9 +25,9 @@ import sys
 # not the system's one
 sys.path.insert(0, os.path.dirname(__file__))
 
-from lib import __version__ as version
-from lib import __author__ as author
-from lib import __license__ as license
+from tool import __version__ as version
+from tool import __author__ as author
+from tool import __license__ as license
 
 # Populating the long description
 with open("README.md", "r") as fh:
@@ -42,16 +42,16 @@ with open('requirements.txt') as f:
         requirements.append(line if m is None else m.group(1))
 
 setuptools.setup(
-    name="vre_generic_executor",
+    name="vre_container_executor",
     version=version,
-    scripts=["vre_generic_executor.py"],
+    scripts=["vre_container_executor.py"],
     author=author,
     author_email="username@users.noreply.github.com",
     license=license,
     description="iPC VRE Generic Executor",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/inab/vre_generic_executor",
+    url="https://github.com/inab/vre_container_executor",
     packages=setuptools.find_packages(),
     install_requires=requirements,
     classifiers=[

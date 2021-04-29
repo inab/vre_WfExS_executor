@@ -1,4 +1,4 @@
-# iPC VRE Generic Executor 
+# iPC VRE Container Executor 
 
 ## Requirements
 

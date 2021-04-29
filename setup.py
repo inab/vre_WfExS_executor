@@ -48,7 +48,7 @@ setuptools.setup(
     author=author,
     author_email="username@users.noreply.github.com",
     license=license,
-    description="iPC VRE Generic Executor",
+    description="iPC VRE Container Executor",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/inab/vre_container_executor",

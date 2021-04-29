@@ -130,3 +130,7 @@ dmypy.json
 
 # PyCharm IDE folder
 .idea/
+
+# WfExS folders
+wfexs-backend-test/
+wfexs-backend-test_WorkDir/

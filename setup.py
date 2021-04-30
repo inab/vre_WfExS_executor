@@ -51,7 +51,7 @@ setuptools.setup(
     description="iPC VRE Container Executor",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/inab/vre_container_executor",
+    url="https://github.com/inab/vre_container_executor.git",
     packages=setuptools.find_packages(),
     install_requires=requirements,
     classifiers=[

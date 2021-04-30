@@ -23,8 +23,8 @@ Directly from GitHub:
 
 ```bash
 cd $HOME
-git clone https://github.com/inab/vre_tool_generator.git
-cd vre_tool_generator
+git clone https://github.com/inab/vre_container_executor.git
+cd vre_container_executor
 ```
 
 Create the Python environment:

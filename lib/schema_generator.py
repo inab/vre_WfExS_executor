@@ -69,7 +69,6 @@ def setInputs(inputs):
     :param inputs:
     :return:
     """
-    wantedKeys = ["File", "'File[]'"]
     input_files, arguments = [], []
     for input in inputs:
         if input['type'].find("File") != -1:  # create new InputFile
@@ -114,7 +113,7 @@ def setTool(owner, keywords, infrastructure, input_files, arguments):  # TODO
         short_description="This is a one or two lines description of what 'My Tool' does.",
         long_description="This is a longer description of what 'My Tool' does. It includes information about the software use for it, the supported inputs, the expected results, etc.",
         url="https://github.com/.../MyTool",
-        publication="http://dx.doi.org/xx.xxxx/xxxx/xxxxxx",
+        publication="https://dx.doi.org/xx.xxxx/xxxx/xxxxxx",
         owner=owner,
         keywords=keywords,
         keywords_tool=keywords,

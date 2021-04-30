@@ -1,0 +1,11 @@
+trs_endpoint: https://dev.workflowhub.eu/ga4gh/trs/v2/tools/
+workflow_id: 140
+version: 3
+workflow_config:
+  secure: false
+params:
+  data_matrix:
+    c-l-a-s-s: File
+    url: file://tests/data_matrix.csv
+  separator: ","
+  outdir: "output"

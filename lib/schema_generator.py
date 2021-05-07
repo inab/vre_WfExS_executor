@@ -91,7 +91,7 @@ def setInputs(inputs):
         if input['type'].find("File") != -1:  # create new InputFile
             new_file = InputFile(
                 name=input['id'],
-                description="",  # TODO input['doc']
+                description="",  # TODO inp['doc']
                 help=None,
                 file_type=[],
                 data_type=[],
@@ -103,7 +103,7 @@ def setInputs(inputs):
         else:  # create new Argument
             new_argument = Argument(
                 name=input['id'],
-                description="",  # TODO input['doc']
+                description="",  # TODO inp['doc']
                 help=None,
                 type=input['type'],
                 default=None

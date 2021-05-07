@@ -48,7 +48,7 @@ class Wrapper:
         """
         Main run function for running Container tool.
 
-        :param input_files: Dictionary of input files locations.
+        :param input_files: Dictionary of inp files locations.
         :type input_files: dict
         :param input_metadata: Dictionary of files metadata.
         :type input_metadata: dict
@@ -102,7 +102,7 @@ def main_wrapper(config_path, in_metadata_path, out_metadata_path):
 if __name__ == "__main__":
     PARSER = argparse.ArgumentParser(description="VRE Container Tool")
     PARSER.add_argument("--config", help="Configuration file", required=True)
-    PARSER.add_argument("--in_metadata", help="Location of input metadata file", required=True)
+    PARSER.add_argument("--in_metadata", help="Location of inp metadata file", required=True)
     PARSER.add_argument("--out_metadata", help="Location of output metadata file", required=True)
     PARSER.add_argument("--log_file", help="Location of the log file", required=False)
 

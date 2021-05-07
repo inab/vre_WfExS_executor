@@ -3,7 +3,6 @@ import sys
 import urllib.request
 
 import yaml
-from yaml import Dumper as YAMLDumper
 
 # cwl input
 remote_cwl = 'https://raw.githubusercontent.com/inab/ipc_workflows/main/cosifer/cwl/cosifer.cwl'
@@ -66,4 +65,4 @@ cwl_dict = {
 }
 # create yaml file from cwl_dict
 with open('../tests/cosifer_test3_cwl.yaml', mode='w', encoding='utf-8') as yaml_input:
-    yaml.dump(cwl_dict, yaml_input, Dumper=YAMLDumper)
+    yaml.dump(cwl_dict, yaml_input, Dumper=yaml.Dumper)

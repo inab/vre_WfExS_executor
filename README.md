@@ -1,4 +1,4 @@
-# iPC VRE Container Executor 
+# iPC VRE WfExS Executor 
 
 ## Requirements
 

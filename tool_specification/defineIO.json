@@ -1,0 +1,105 @@
+{
+    "_id": "WfExS",
+    "input_files": [
+        {
+            "name": "workflow_config_filename",
+            "description": "Configuration file, describing workflow and inputs",
+            "help": "Workflow configuration file: TO BE DOCUMENTED",
+            "file_type": [
+                "YAML"
+            ],
+            "data_type": [
+                "workflow_configuration"
+            ],
+            "required": true,
+            "allow_multiple": false
+        },
+        {
+            "name": "local_config_filename",
+            "description": "Local installation configuration file",
+            "help": "Local configuration file: It describes the local setup of the backend. Relative paths in this configuration file use as reference the directory where the local configuration file is living",
+            "file_type": [
+                "YAML"
+            ],
+            "data_type": [
+                "workflow_configuration"
+            ],
+            "required": true,
+            "allow_multiple": false
+        },
+        {
+            "name": "security_context_config_filename",
+            "description": "Configuration file, describing security contexts, which hold credentials and similar",
+            "help": "Security contexts file: TO BE DOCUMENTED",
+            "file_type": [
+                "YAML"
+            ],
+            "data_type": [
+                "workflow_configuration"
+            ],
+            "required": false,
+            "allow_multiple": false
+        }
+    ],
+    "input_files_public_dir": [],
+    "input_files_combinations": [
+        {
+            "description": "Execution",
+            "input_files": [
+                "local_config_filename",
+                "workflow_config_filename"
+            ]
+        },
+        {
+            "description": "Execution with Security Context",
+            "input_files": [
+                "local_config_filename",
+                "security_context_config_filename",
+                "workflow_config_filename"
+            ]
+        }
+    ],
+    "arguments": [
+        {
+            "name": "command",
+            "description": "WfExS commands",
+            "help": "WfExS commands are: stage, export-stage, offline-execute, execute and export-results",
+            "type": "enum",
+            "enum_items": {
+                "description": [
+                    "stage",
+                    "export-stage",
+                    "offline-execute",
+                    "execute",
+                    "export-results"
+                ],
+                "name": [
+                    "stage",
+                    "export-stage",
+                    "offline-execute",
+                    "execute",
+                    "export-results"
+                ]
+            },
+            "default": [
+                "execute"
+            ]
+        }
+    ],
+    "output_files": [
+        {
+            "name": "rocrate",
+            "required": true,
+            "allow_multiple": false,
+            "file": {
+                "file_type": "MULTIPLE",
+                "data_type": "rocrate",
+                "compressed": "ZIP",
+                "meta_data": {
+                    "visible": true,
+                    "description": "Workflow RO-Crate"
+                }
+            }
+        }
+    ]
+}

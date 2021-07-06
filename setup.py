@@ -42,16 +42,16 @@ with open('requirements.txt') as f:
         requirements.append(line if m is None else m.group(1))
 
 setuptools.setup(
-    name="vre_container_executor",
+    name="vre_WfExS_executor",
     version=version,
-    scripts=["vre_container_executor.py"],
+    scripts=["VRE_RUNNER.py"],
     author=author,
-    author_email="username@users.noreply.github.com",
+    author_email="laura.rodriguez@bsc.es",
     license=license,
-    description="iPC VRE Container Executor",
+    description="iPC VRE WfExS Executor",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/inab/vre_container_executor.git",
+    url="https://github.com/inab/vre_WfExS_executor.git",
     packages=setuptools.find_packages(),
     install_requires=requirements,
     classifiers=[

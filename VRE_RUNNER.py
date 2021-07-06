@@ -20,7 +20,7 @@ import sys
 
 from utils import logger
 from apps.jsonapp import JSONApp
-from tool.VRE_Tool import Container
+from tool.VRE_Tool import WfExS
 
 
 class Wrapper:
@@ -36,7 +36,7 @@ class Wrapper:
         Initialise the tool with its configuration.
 
         :param configuration: a dictionary containing parameters that define how the operation should be carried out, 
-        which are specific to Container tool.
+        which are specific to WfExS tool.
         :type configuration: dict
         """
         if configuration is None:
@@ -46,13 +46,13 @@ class Wrapper:
 
     def run(self, input_files, input_metadata, output_files, output_metadata):
         """
-        Main run function for running Container tool.
+        Main run function for running WfExs tool.
 
-        :param input_files: Dictionary of inp files locations.
+        :param input_files: Dictionary of input files locations.
         :type input_files: dict
         :param input_metadata: Dictionary of files metadata.
         :type input_metadata: dict
-        :param output_files: Dictionary of the output files locations. expected to be generated.
+        :param output_files: Dictionary of the output files locations expected to be generated.
         :type output_files: dict
         :param output_metadata: # TODO
         :type output_metadata: list
@@ -60,13 +60,12 @@ class Wrapper:
         :rtype: dict, dict
         """
         try:
-            logger.debug("Run the Container tool")
-            tt_handle = Container(self.configuration)
+            tt_handle = WfExS(self.configuration)
             tt_files, tt_meta = tt_handle.run(input_files, input_metadata, output_files, output_metadata)
             return tt_files, tt_meta
 
         except Exception as error:
-            errstr = "Tool Container wasn't executed successfully. ERROR: {}".format(error)
+            errstr = "Tool WfExS wasn't executed successfully. ERROR: {}".format(error)
             logger.error(errstr)
             raise Exception(errstr)
 
@@ -90,7 +89,7 @@ def main_wrapper(config_path, in_metadata_path, out_metadata_path):
         app = JSONApp()
 
         result = app.launch(Wrapper, config_path, in_metadata_path, out_metadata_path)
-        logger.info("2. Tool successfully executed; see " + out_metadata_path)
+        logger.progress("Tool successfully executed; see " + out_metadata_path)
         return result
 
     except Exception as error:
@@ -100,9 +99,9 @@ def main_wrapper(config_path, in_metadata_path, out_metadata_path):
 
 
 if __name__ == "__main__":
-    PARSER = argparse.ArgumentParser(description="VRE Container Tool")
+    PARSER = argparse.ArgumentParser(description="VRE WfExS Tool")
     PARSER.add_argument("--config", help="Configuration file", required=True)
-    PARSER.add_argument("--in_metadata", help="Location of inp metadata file", required=True)
+    PARSER.add_argument("--in_metadata", help="Location of input metadata file", required=True)
     PARSER.add_argument("--out_metadata", help="Location of output metadata file", required=True)
     PARSER.add_argument("--log_file", help="Location of the log file", required=False)
 

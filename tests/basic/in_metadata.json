@@ -1,0 +1,62 @@
+[
+    {
+        "_id": "unique_file_id_60e442dbdb4887.62155334",
+        "type": "file",
+        "file_path": "tests/basic/data/cosifer_execution_cwl.yaml",
+        "file_type": "YAML",
+        "data_type": "workflow_configuration",
+        "compressed": 0,
+        "sources": [],
+        "user_id": "user_id",
+        "creation_time": {
+            "$date": {
+                "$numberLong": "1625572059000"
+            }
+        },
+        "meta_data": {
+            "size": 0,
+            "project": "test",
+            "atime": {
+                "$date": {
+                    "$numberLong": "1625572059000"
+                }
+            },
+            "parentDir": "unique_file_id_60e442dbdb4f32.68205641",
+            "lastAccess": {
+                "$date": {
+                    "$numberLong": "1625572059000"
+                }
+            }
+        }
+    },
+    {
+        "_id": "unique_file_id_60e442dbdb5268.51857692",
+        "type": "file",
+        "file_path": "tests/basic/data/local_config.yaml",
+        "file_type": "YAML",
+        "data_type": "workflow_configuration",
+        "compressed": 0,
+        "sources": [],
+        "user_id": "user_id",
+        "creation_time": {
+            "$date": {
+                "$numberLong": "1625572059000"
+            }
+        },
+        "meta_data": {
+            "size": 0,
+            "project": "test",
+            "atime": {
+                "$date": {
+                    "$numberLong": "1625572059000"
+                }
+            },
+            "parentDir": "unique_file_id_60e442dbdb56d1.19248145",
+            "lastAccess": {
+                "$date": {
+                    "$numberLong": "1625572059000"
+                }
+            }
+        }
+    }
+]

@@ -1,0 +1,50 @@
+{
+    "input_files": [
+        {
+            "name": "workflow_config_filename",
+            "value": "unique_file_id_60e442dbdb4887.62155334",
+            "required": true,
+            "allow_multiple": false
+        },
+        {
+            "name": "local_config_filename",
+            "value": "unique_file_id_60e442dbdb5268.51857692",
+            "required": true,
+            "allow_multiple": false
+        }
+    ],
+    "arguments": [
+        {
+            "name": "execution",
+            "value": "tests/basic/run000"
+        },
+        {
+            "name": "project",
+            "value": "basic"
+        },
+        {
+            "name": "description",
+            "value": "test"
+        },
+        {
+            "name": "command",
+            "value": "execute"
+        }
+    ],
+    "output_files": [
+        {
+            "name": "rocrate",
+            "required": true,
+            "allow_multiple": false,
+            "file": {
+                "file_type": "MULTIPLE",
+                "data_type": "rocrate",
+                "compressed": "ZIP",
+                "meta_data": {
+                    "visible": true,
+                    "description": "Workflow RO-Crate"
+                }
+            }
+        }
+    ]
+}
